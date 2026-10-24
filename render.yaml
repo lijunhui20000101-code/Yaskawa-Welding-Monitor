@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: yaskawa-welding-v5
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn server:app
+    healthCheckPath: /api/health

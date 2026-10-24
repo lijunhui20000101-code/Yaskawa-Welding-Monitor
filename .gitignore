@@ -1,0 +1,24 @@
+
+# Python 虚拟环境
+.venv/
+venv/
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# 本地数据库，不上传
+data/*.db
+data/*.sqlite
+data/*.sqlite3
+
+# 环境变量和密钥
+.env
+.env.*
+
+# 编辑器配置
+.vscode/
+.idea/
+
+# 日志文件
+*.log
