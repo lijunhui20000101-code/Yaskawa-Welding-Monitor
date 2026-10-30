@@ -93,10 +93,10 @@ def init_db():
             now = datetime.now().isoformat(timespec="seconds")
             rows = [(i + 1, v, c, now) for i, (v, c) in enumerate(DEFAULT_RECIPE)]
             if USE_POSTGRES:
-                for row in rows:
-                    conn.execute(
+                with conn.cursor() as cur:
+                    cur.executemany(
                         "INSERT INTO recipes(seam,voltage,current,updated_at) VALUES(%s,%s,%s,%s)",
-                        row,
+                        rows,
                     )
             else:
                 conn.executemany(
@@ -161,14 +161,15 @@ def put_recipes():
 
     with connect_db() as conn:
         if USE_POSTGRES:
-            conn.executemany(
-                """INSERT INTO recipes(seam,voltage,current,updated_at) VALUES(%s,%s,%s,%s)
-                ON CONFLICT(seam) DO UPDATE SET
-                voltage=EXCLUDED.voltage,
-                current=EXCLUDED.current,
-                updated_at=EXCLUDED.updated_at""",
-                clean,
-            )
+            with conn.cursor() as cur:
+                cur.executemany(
+                    """INSERT INTO recipes(seam,voltage,current,updated_at) VALUES(%s,%s,%s,%s)
+                    ON CONFLICT(seam) DO UPDATE SET
+                    voltage=EXCLUDED.voltage,
+                    current=EXCLUDED.current,
+                    updated_at=EXCLUDED.updated_at""",
+                    clean,
+                )
         else:
             conn.executemany(
                 """INSERT INTO recipes(seam,voltage,current,updated_at) VALUES(?,?,?,?)
