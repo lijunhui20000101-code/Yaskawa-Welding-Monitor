@@ -53,6 +53,13 @@ let backendOnline = false;
 let databaseMode = "unknown";
 let backendError = "";
 let alarms = [];
+
+// 页面启动时必须先初始化这些状态变量，再执行 render()。
+// 否则 activePage / layoutMode 未定义会让脚本提前中断，后台 API 不会被调用。
+let activePage = "overview";
+let layoutMode = "cards";
+let activeStation = "222ST";
+let activeRobot = "R1";
 async function apiRequest(path, options={}) {
   const response = await fetch(path, {headers:{"Content-Type":"application/json"}, ...options});
   if (!response.ok) {
