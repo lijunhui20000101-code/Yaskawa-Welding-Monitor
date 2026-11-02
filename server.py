@@ -77,6 +77,22 @@ def init_db():
                 delta TEXT,
                 state TEXT
             )""")
+            # 兼容先前在 Supabase 控制台手动创建、字段不完整的 alarms 表。
+            for column, sql_type in (
+                ("time", "TEXT"),
+                ("station", "TEXT"),
+                ("robot", "TEXT"),
+                ("seam", "INTEGER"),
+                ("field", "TEXT"),
+                ("standard", "TEXT"),
+                ("current", "TEXT"),
+                ("delta", "TEXT"),
+                ("state", "TEXT"),
+            ):
+                execute(
+                    conn,
+                    f"ALTER TABLE alarms ADD COLUMN IF NOT EXISTS {column} {sql_type}"
+                )
         else:
             execute(conn, """CREATE TABLE IF NOT EXISTS recipes (
                 seam INTEGER PRIMARY KEY, voltage REAL NOT NULL, current REAL NOT NULL,
@@ -86,6 +102,23 @@ def init_db():
                 id INTEGER PRIMARY KEY AUTOINCREMENT, time TEXT, station TEXT, robot TEXT,
                 seam INTEGER, field TEXT, standard TEXT, current TEXT, delta TEXT, state TEXT
             )""")
+            # SQLite 本地开发时也补齐旧表缺少的字段。
+            existing_columns = {
+                row["name"] for row in execute(conn, "PRAGMA table_info(alarms)").fetchall()
+            }
+            for column, sql_type in (
+                ("time", "TEXT"),
+                ("station", "TEXT"),
+                ("robot", "TEXT"),
+                ("seam", "INTEGER"),
+                ("field", "TEXT"),
+                ("standard", "TEXT"),
+                ("current", "TEXT"),
+                ("delta", "TEXT"),
+                ("state", "TEXT"),
+            ):
+                if column not in existing_columns:
+                    execute(conn, f"ALTER TABLE alarms ADD COLUMN {column} {sql_type}")
 
         count = execute(conn, "SELECT COUNT(*) FROM recipes").fetchone()
         count = list(count.values())[0] if isinstance(count, dict) else count[0]
@@ -187,7 +220,7 @@ def get_alarms():
     with connect_db() as conn:
         rows = execute(
             conn,
-            """SELECT time,station,robot,seam,field,standard,current,delta,state
+            """SELECT id,time,station,robot,seam,field,standard,current,delta,state
             FROM alarms ORDER BY id DESC LIMIT 300"""
         ).fetchall()
     return jsonify({"alarms": [dict(row) for row in rows]})
@@ -200,28 +233,41 @@ def post_alarm():
         "time", "station", "robot", "seam", "field",
         "standard", "current", "delta", "state"
     ]
-    if any(k not in item for k in required):
+    if not isinstance(item, dict) or any(k not in item for k in required):
         return jsonify({"error": "报警记录字段不完整"}), 400
 
-    values = [item[k] for k in required]
+    try:
+        seam = int(item["seam"])
+        if seam < 1 or seam > 27:
+            raise ValueError
+    except (TypeError, ValueError):
+        return jsonify({"error": "焊缝编号必须是1到27之间的整数"}), 400
+
+    values = [
+        item["time"], item["station"], item["robot"], seam,
+        item["field"], item["standard"], item["current"],
+        item["delta"], item["state"],
+    ]
     with connect_db() as conn:
         if USE_POSTGRES:
-            execute(
-                conn,
-                """INSERT INTO alarms(
-                    time,station,robot,seam,field,standard,current,delta,state
-                ) VALUES(?,?,?,?,?,?,?,?,?)""",
-                values,
-            )
+            with conn.cursor() as cur:
+                cur.execute(
+                    """INSERT INTO alarms(
+                        time,station,robot,seam,field,standard,current,delta,state
+                    ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
+                    values,
+                )
+                alarm_id = cur.fetchone()["id"]
         else:
-            execute(
+            cur = execute(
                 conn,
                 """INSERT INTO alarms(
                     time,station,robot,seam,field,standard,current,delta,state
                 ) VALUES(?,?,?,?,?,?,?,?,?)""",
                 values,
             )
-    return jsonify({"ok": True})
+            alarm_id = cur.lastrowid
+    return jsonify({"ok": True, "id": alarm_id})
 
 
 # Initialize tables at process startup for both local Flask and Render/Gunicorn.
