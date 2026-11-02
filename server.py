@@ -165,55 +165,11 @@ def get_recipes():
 
 @app.put("/api/recipes")
 def put_recipes():
-    payload = request.get_json(silent=True) or {}
-    recipes = payload.get("recipes")
-    if not isinstance(recipes, list) or len(recipes) != 27:
-        return jsonify({"error": "必须提交完整的27条焊缝配方"}), 400
-
-    clean = []
-    try:
-        seen = set()
-        for item in recipes:
-            seam = int(item["seam"])
-            voltage = float(item["voltage"])
-            current = float(item["current"])
-            if (
-                seam < 1 or seam > 27 or seam in seen
-                or not (0 < voltage < 100) or not (0 < current < 1000)
-            ):
-                raise ValueError("焊缝编号或参数范围不正确")
-            seen.add(seam)
-            clean.append((
-                seam, voltage, current,
-                datetime.now().isoformat(timespec="seconds")
-            ))
-        if len(seen) != 27:
-            raise ValueError("焊缝编号必须从1到27完整且不重复")
-    except (KeyError, TypeError, ValueError) as exc:
-        return jsonify({"error": str(exc) or "配方数据格式不正确"}), 400
-
-    with connect_db() as conn:
-        if USE_POSTGRES:
-            with conn.cursor() as cur:
-                cur.executemany(
-                    """INSERT INTO recipes(seam,voltage,current,updated_at) VALUES(%s,%s,%s,%s)
-                    ON CONFLICT(seam) DO UPDATE SET
-                    voltage=EXCLUDED.voltage,
-                    current=EXCLUDED.current,
-                    updated_at=EXCLUDED.updated_at""",
-                    clean,
-                )
-        else:
-            conn.executemany(
-                """INSERT INTO recipes(seam,voltage,current,updated_at) VALUES(?,?,?,?)
-                ON CONFLICT(seam) DO UPDATE SET
-                voltage=excluded.voltage,
-                current=excluded.current,
-                updated_at=excluded.updated_at""",
-                clean,
-            )
-    return jsonify({"ok": True, "saved": 27})
-
+    # 标准焊接配方为只读数据。禁止通过网页/API手动覆盖；
+    # 后续接入现场采集程序时，应使用独立的授权写入通道。
+    return jsonify({
+        "error": "标准配方为只读数据，禁止通过网页修改；请由授权的现场采集程序更新。"
+    }), 405
 
 @app.get("/api/alarms")
 def get_alarms():
