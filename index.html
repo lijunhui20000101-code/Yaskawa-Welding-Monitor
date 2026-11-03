@@ -292,7 +292,12 @@ function stationCards(){
 function mapNodes(){
  const nodes=stations.map(s=>`<button class="floor-node ${s.count>0?'has-robots':'no-robots'} ${s.kind==='辅助工位'?'aux-node':''} ${s.id.startsWith('NUT')?'nut-node':''} ${['投入','取出'].includes(s.id)?'process-node':''}" style="left:${s.layout.x}%;top:${s.layout.y}%;width:${s.layout.w}%;height:${s.layout.h}%" onclick="openStation('${s.id}')" title="${s.id} · ${s.count>0?`有焊接机器人 ${s.count} 台`:'无焊接机器人'}"><strong>${s.id}</strong><small>${s.count>0?`${s.count}台焊接机器人`:'无焊接机器人'}</small></button>`).join("");
  return `<div class="zone-map-note">按你提供的旧平面图还原三区相对位置；绿色表示配置有焊接机器人，灰色表示无焊接机器人。点击任一工位可查看详情。位置为参考图示意，尚非现场测绘坐标。</div><div class="floorplan-scroll"><div class="floorplan" role="group" aria-label="一区、二区、三区工位分布示意图">
- <svg class="floorplan-outline" viewBox="0 0 1000 900" preserveAspectRatio="none" aria-hidden="true"><path d="M35 92 H240 V220 H350 V280 H240 V790 H35 Z"/><path d="M402 70 H843 V370 H350 V280 H402 Z"/><path d="M350 420 H853 V807 H350 Z"/><path d="M307 82 H390 V173 H307 Z"/></svg>
+ <svg class="floorplan-outline" viewBox="0 0 1000 900" preserveAspectRatio="none" aria-hidden="true">
+ <path d="M35 92 H255 V220 H365 V320 H255 V815 H35 Z"/>
+ <path d="M440 70 H960 V400 H385 V280 H440 Z"/>
+ <path d="M350 420 H980 V850 H350 Z"/>
+ <path d="M307 82 H430 V190 H307 Z"/>
+ </svg>
  <div class="zone-tag zone-tag-two">二区</div><div class="zone-tag zone-tag-one">一区</div><div class="zone-tag zone-tag-three-small">三区</div><div class="zone-tag zone-tag-three">三区</div>
  ${nodes}
  <div class="sensor-label" style="left:56.4%;top:12.3%">MH13</div><div class="sensor-bar" style="left:56.4%;top:15.0%"></div>
