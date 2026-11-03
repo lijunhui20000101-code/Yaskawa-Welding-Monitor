@@ -41,11 +41,10 @@ table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;colo
 .floor-node.aux-node{background:linear-gradient(145deg,#9db2c5,#627d95);border-color:#7895ad;color:#102438}
 .floor-node.nut-node strong{font-size:clamp(10px,1vw,13px)}
 .floor-node.process-node strong{font-size:clamp(10px,.95vw,13px)}
-.mh-marker{position:absolute;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:#7fffa6;font-size:10px;font-weight:800;text-shadow:0 0 8px #24d85e}
-.mh-marker .mh-icon{font-size:23px;line-height:1.05;filter:drop-shadow(0 0 4px #2bd66b)}
-.position-table{position:absolute;z-index:3;left:9.8%;top:46.3%;width:5.2%;height:3.2%;min-width:38px;border:2px solid #25d76b;border-radius:5px;background:#4fe17c;color:#07351a;display:grid;place-items:center;font-size:12px;font-weight:900;box-shadow:0 0 12px #25d76b66}
+.mh-block{position:absolute;z-index:3;min-width:48px;height:42px;padding:4px 6px;border-radius:8px;border:1px solid #7f94a8;background:linear-gradient(145deg,#aab7c4,#65798d);color:#142433;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;box-shadow:0 0 8px #9aabb533}
+.mh-block.small{min-width:42px;height:38px;font-size:14px}
 .sensor-label{position:absolute;z-index:3;transform:translateX(-50%);color:#c7e6ff;font-size:11px;font-weight:800;white-space:nowrap;text-shadow:0 1px 4px #061426}
-.sensor-bar{position:absolute;z-index:3;width:11px;height:34px;border-radius:7px;background:#10e66a;box-shadow:0 0 12px #0bff6b99;transform:translateX(-50%)}
+.sensor-bar{position:absolute;z-index:3;width:16px;height:40px;border-radius:8px;border:1px solid #7f94a8;background:linear-gradient(145deg,#aab7c4,#65798d);box-shadow:0 0 8px #9aabb533;transform:translateX(-50%)}
 .floorplan-legend{display:flex;gap:10px 18px;flex-wrap:wrap;align-items:center;margin-top:12px;color:var(--muted);font-size:11px;line-height:1.6}
 .floorplan-legend span{display:inline-flex;align-items:center;gap:6px}.legend-box{width:11px;height:11px;border-radius:3px;display:inline-block}.legend-box.robot{background:#62e77e;box-shadow:0 0 6px #62e77e66}.legend-box.no-robot{background:#8194a6}.legend-box.communication{width:7px;height:7px;border-radius:50%;background:#f5bd45}
 .robot-count-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border-radius:12px;background:#163b32;color:#8ff0bd;font-size:10px}
@@ -293,20 +292,19 @@ function mapNodes(){
  const nodes=stations.map(s=>`<button class="floor-node ${s.count>0?'has-robots':'no-robots'} ${s.kind==='辅助工位'?'aux-node':''} ${s.id.startsWith('NUT')?'nut-node':''} ${['投入','取出'].includes(s.id)?'process-node':''}" style="left:${s.layout.x}%;top:${s.layout.y}%;width:${s.layout.w}%;height:${s.layout.h}%" onclick="openStation('${s.id}')" title="${s.id} · ${s.count>0?`有焊接机器人 ${s.count} 台`:'无焊接机器人'}"><strong>${s.id}</strong><small>${s.count>0?`${s.count}台焊接机器人`:'无焊接机器人'}</small></button>`).join("");
  return `<div class="zone-map-note">按你提供的旧平面图还原三区相对位置；绿色表示配置有焊接机器人，灰色表示无焊接机器人。点击任一工位可查看详情。位置为参考图示意，尚非现场测绘坐标。</div><div class="floorplan-scroll"><div class="floorplan" role="group" aria-label="一区、二区、三区工位分布示意图">
  <svg class="floorplan-outline" viewBox="0 0 1000 900" preserveAspectRatio="none" aria-hidden="true">
- <path d="M35 92 H255 V220 H365 V320 H255 V815 H35 Z"/>
+ <path d="M35 92 H268 V220 H388 V320 H268 V815 H35 Z"/>
  <path d="M440 70 H960 V400 H385 V280 H440 Z"/>
  <path d="M350 420 H980 V850 H350 Z"/>
  <path d="M307 82 H430 V190 H307 Z"/>
  </svg>
  <div class="zone-tag zone-tag-two">二区</div><div class="zone-tag zone-tag-one">一区</div><div class="zone-tag zone-tag-three-small">三区</div><div class="zone-tag zone-tag-three">三区</div>
  ${nodes}
- <div class="sensor-label" style="left:56.4%;top:12.3%">MH13</div><div class="sensor-bar" style="left:56.4%;top:15.0%"></div>
- <div class="sensor-label" style="left:70.0%;top:12.3%">MH14</div><div class="sensor-bar" style="left:70.0%;top:15.0%"></div>
- <div class="sensor-label" style="left:83.7%;top:12.3%">MH15</div><div class="sensor-bar" style="left:83.7%;top:15.0%"></div>
- <div class="mh-marker" style="left:10.2%;top:37.5%"><span class="mh-icon">🤖</span><span>MH1</span></div>
- <div class="position-table" title="中间置台">⊕</div>
- <div class="mh-marker" style="left:10.2%;top:58.5%"><span class="mh-icon">🤖</span><span>MH2</span></div>
- </div></div><div class="floorplan-legend"><span><i class="legend-box robot"></i>有焊接机器人（绿色）</span><span><i class="legend-box no-robot"></i>无焊接机器人（灰色）</span><span><i class="legend-box communication"></i>现场通信尚未接入</span><span>🤖 MH1 / MH2：辅助机器人图标，单独保留，不计入41台焊接机器人统计</span><span>MH13 / MH14 / MH15：原图标记</span></div>`;
+ <div class="sensor-label" style="left:56.0%;top:12.3%">MH13</div><div class="sensor-bar" style="left:56.0%;top:15.0%"></div>
+ <div class="sensor-label" style="left:69.8%;top:12.3%">MH14</div><div class="sensor-bar" style="left:69.8%;top:15.0%"></div>
+ <div class="sensor-label" style="left:83.5%;top:12.3%">MH15</div><div class="sensor-bar" style="left:83.5%;top:15.0%"></div>
+ <div class="mh-block small" style="left:10.0%;top:37.8%">MH1</div>
+ <div class="mh-block small" style="left:10.0%;top:58.8%">MH2</div>
+ </div></div><div class="floorplan-legend"><span><i class="legend-box robot"></i>有焊接机器人（绿色）</span><span><i class="legend-box no-robot"></i>无焊接机器人（灰色）</span><span><i class="legend-box communication"></i>现场通信尚未接入</span><span>MH1 / MH2：辅助标识，不计入41台焊接机器人统计</span><span>MH13 / MH14 / MH15：非焊接辅助位，灰色显示</span></div>`;
 }
 function overview(){return `${head("车间总览","完整保留参考图中的工位与辅助点，并区分焊接机器人配置",`<button class="${layoutMode==='map'?'primary':''}" onclick="setLayout('map')">分区平面图</button><button class="${layoutMode==='cards'?'primary':''}" onclick="setLayout('cards')">设备卡片</button>`)}<div class="kpis">${kpi("焊接机器人总数",String(totalRobotCount),"现场配置：41台")}${kpi("布局工位/辅助点",String(stations.length),`其中${robotStationCount}个有焊接机器人`)}${kpi("有焊接机器人工位",String(robotStationCount),`无焊接机器人：${noRobotStationCount}处`)}${kpi("在线机器人","0","现场通信尚未接入","yellow")}</div><div class="panel"><div class="panelhead"><h3>${layoutMode==='map'?'三区工位分布':'三区工位设备卡片'}</h3><span class="pill">绿色：有焊接机器人 · 灰色：无焊接机器人</span></div>${layoutMode==='map'?mapNodes():stationCards()}</div><div class="footer-note">说明：共保留${stations.length}处布局工位/辅助点，其中${robotStationCount}个工位配置焊接机器人，共${totalRobotCount}台；其余${noRobotStationCount}处不计入机器人总数。工位相对位置依据你提供的参考图片整理，尚非现场测绘坐标。现场通信状态独立显示，当前版本中所有机器人均设置为未接入，接入现场后再更新状态。</div>`}
 function setLayout(mode){layoutMode=mode;render()}
