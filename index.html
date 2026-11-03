@@ -16,7 +16,42 @@ main{padding:22px;min-width:0}.pagehead{display:flex;justify-content:space-betwe
 .grid2{display:grid;grid-template-columns:1.25fr 1fr;gap:15px}.panel{padding:17px;min-width:0}.panel h3{margin:0 0 14px;font-size:16px}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.pill{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:5px 9px;font-size:11px;background:#19334d;color:#c4d9ed}.dot{width:7px;height:7px;border-radius:50%;display:inline-block;background:currentColor}.status-ok{color:var(--green)}.status-warn{color:var(--yellow)}.status-bad{color:var(--red)}.status-off{color:#7d91a6}
 table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;color:#90aac4;font-weight:600;background:#10243a}th,td{padding:11px 10px;border-bottom:1px solid #203a54}tbody tr:hover{background:#112b45}td.num{font-variant-numeric:tabular-nums}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px}
 .station-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.station-card{padding:14px;cursor:pointer;min-height:126px;position:relative;transition:.15s}.station-card:hover{transform:translateY(-2px);border-color:#4a91c6}.station-card h3{margin:0 0 8px;font-size:17px}.station-card p{margin:5px 0;color:var(--muted);font-size:12px}.station-card .bigstatus{position:absolute;right:13px;top:13px;font-size:12px}.station-card.enabled{border-top:3px solid var(--green)}.station-card.alarm{border-top:3px solid var(--red)}.station-card.disabled{opacity:.82;border-style:dashed;cursor:pointer}.layoutmap{position:relative;min-height:430px;border:1px solid #254765;border-radius:13px;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#143354 0%,#0b1d32 65%,#071426 100%)}.layoutmap:before{content:"";position:absolute;inset:25px;background-image:linear-gradient(#24405a55 1px,transparent 1px),linear-gradient(90deg,#24405a55 1px,transparent 1px);background-size:32px 32px;opacity:.45}.maplabel{position:absolute;left:20px;top:16px;color:#8ba8c5;font-size:11px;letter-spacing:1px}.mapnode{position:absolute;min-width:90px;padding:12px 8px;border-radius:8px;text-align:center;border:1px solid #327a61;background:#104c3a;color:#d8ffed;box-shadow:0 0 18px #22c98218;cursor:pointer;font-size:12px}.mapnode strong{display:block;font-size:14px;margin-bottom:5px}.mapnode.alarm{background:#642b35;border-color:#b64a58;color:#ffe3e6}.mapnode.disabled{background:#17283a;border-color:#3c5269;color:#a8bbce;box-shadow:none;cursor:pointer}.mapnode small{font-size:10px}
-.zone-map-note{color:var(--muted);font-size:12px;margin:0 0 12px}.zone-map{display:grid;gap:14px}.zone-section,.zone-panel{border:1px solid #254765;border-radius:13px;background:linear-gradient(145deg,#10243d,#0b1c30);padding:14px}.zone-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #254765}.zone-heading h3{margin:0 0 4px;font-size:17px;color:#e7f2ff}.zone-heading span{font-size:12px;color:var(--muted)}.zone-total{font-weight:800;color:#8fc7ff;font-size:16px}.zone-nodes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.zone-nodes .mapnode{position:static;min-width:0;width:100%;min-height:68px}.zone-nodes .mapnode strong{font-size:14px}.zone-nodes .mapnode small{font-size:11px}@media(max-width:700px){.zone-nodes{grid-template-columns:repeat(2,minmax(0,1fr))}.zone-section,.zone-panel{padding:10px}.zone-heading h3{font-size:15px}}
+
+.zone-map-note{color:var(--muted);font-size:12px;margin:0 0 12px;line-height:1.7}
+.zone-map{display:block}
+.zone-section{border:1px solid #254765;border-radius:13px;background:linear-gradient(145deg,#10243d,#0b1c30);padding:14px}
+.zone-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #254765}
+.zone-heading h3{margin:0 0 4px;font-size:17px;color:#e7f2ff}.zone-heading span{font-size:12px;color:var(--muted)}.zone-total{font-weight:800;color:#8fc7ff;font-size:16px}
+.station-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.station-card.has-robots{border-top:3px solid var(--green)}.station-card.no-robots{border-top:3px solid #60758b;opacity:.86}
+.station-card .config-tag{display:inline-flex;margin-top:5px;padding:3px 7px;border-radius:12px;font-size:10px;background:#163b32;color:#8ff0bd}
+.station-card.no-robots .config-tag{background:#26384a;color:#b5c4d2}
+.floorplan-scroll{width:100%;overflow-x:auto;padding-bottom:8px}
+.floorplan{position:relative;width:100%;min-width:820px;height:clamp(720px,72vw,920px);border:1px solid #254765;border-radius:13px;overflow:hidden;background:radial-gradient(ellipse at 52% 45%,#143354 0%,#0b1d32 66%,#071426 100%)}
+.floorplan:before{content:"";position:absolute;inset:22px;background-image:linear-gradient(#24405a55 1px,transparent 1px),linear-gradient(90deg,#24405a55 1px,transparent 1px);background-size:32px 32px;opacity:.45;pointer-events:none}
+.floorplan-outline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.floorplan-outline path{fill:#0b1e31aa;stroke:#ffd34f;stroke-width:3;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 4px #ffd34f66)}
+.zone-tag{position:absolute;z-index:2;min-width:76px;text-align:center;padding:5px 12px;border:2px solid #ffd34f;border-radius:11px;background:#0b2038;color:#fff;font-weight:800;font-size:17px;box-shadow:0 0 10px #ffd34f33}
+.zone-tag-two{left:7.3%;top:6.5%}.zone-tag-one{left:64%;top:1.5%}.zone-tag-three-small{left:34.5%;top:6.3%;min-width:55px;font-size:14px;padding:4px 8px}.zone-tag-three{left:62.8%;top:44.4%}
+.floor-node{position:absolute;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:4px 3px;border-radius:8px;text-align:center;border:1px solid #2bbd72;background:linear-gradient(145deg,#8cf58b,#43d66d);color:#062615;box-shadow:0 0 13px #42ed7c77;cursor:pointer;line-height:1.15;overflow:hidden}
+.floor-node:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.floor-node strong{display:block;font-size:clamp(11px,1.12vw,15px);font-weight:900;white-space:nowrap}
+.floor-node small{display:block;font-size:clamp(8px,.78vw,10px);font-weight:700;line-height:1.2;white-space:normal}
+.floor-node.no-robots{background:linear-gradient(145deg,#a8b5c2,#65798c);border-color:#8296a8;color:#172534;box-shadow:0 0 8px #9aabb522}
+.floor-node.aux-node{background:linear-gradient(145deg,#9db2c5,#627d95);border-color:#7895ad;color:#102438}
+.floor-node.nut-node strong{font-size:clamp(10px,1vw,13px)}
+.floor-node.process-node strong{font-size:clamp(10px,.95vw,13px)}
+.mh-marker{position:absolute;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:#7fffa6;font-size:10px;font-weight:800;text-shadow:0 0 8px #24d85e}
+.mh-marker .mh-icon{font-size:23px;line-height:1.05;filter:drop-shadow(0 0 4px #2bd66b)}
+.position-table{position:absolute;z-index:3;left:9.8%;top:46.3%;width:5.2%;height:3.2%;min-width:38px;border:2px solid #25d76b;border-radius:5px;background:#4fe17c;color:#07351a;display:grid;place-items:center;font-size:12px;font-weight:900;box-shadow:0 0 12px #25d76b66}
+.sensor-label{position:absolute;z-index:3;transform:translateX(-50%);color:#c7e6ff;font-size:11px;font-weight:800;white-space:nowrap;text-shadow:0 1px 4px #061426}
+.sensor-bar{position:absolute;z-index:3;width:11px;height:34px;border-radius:7px;background:#10e66a;box-shadow:0 0 12px #0bff6b99;transform:translateX(-50%)}
+.floorplan-legend{display:flex;gap:10px 18px;flex-wrap:wrap;align-items:center;margin-top:12px;color:var(--muted);font-size:11px;line-height:1.6}
+.floorplan-legend span{display:inline-flex;align-items:center;gap:6px}.legend-box{width:11px;height:11px;border-radius:3px;display:inline-block}.legend-box.robot{background:#62e77e;box-shadow:0 0 6px #62e77e66}.legend-box.no-robot{background:#8194a6}.legend-box.communication{width:7px;height:7px;border-radius:50%;background:#f5bd45}
+.robot-count-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border-radius:12px;background:#163b32;color:#8ff0bd;font-size:10px}
+@media(max-width:1050px){.station-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.station-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.zone-section{padding:10px}.zone-heading h3{font-size:15px}.floorplan{min-width:820px;height:780px}.zone-tag{font-size:15px}.floorplan-legend{font-size:10px}}
+
 .chart{height:190px;width:100%;display:block}.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-top:8px}.legend span{display:flex;align-items:center;gap:6px}.swatch{width:9px;height:9px;border-radius:3px;display:inline-block}
 .robot-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.robot-card{padding:15px;cursor:pointer}.robot-card:hover{border-color:#4b9ad3}.robot-card h3{margin:0 0 8px}.robot-metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.metric{padding:10px;background:#0a192b;border-radius:8px}.metric small{display:block;color:var(--muted);font-size:11px}.metric b{font-size:19px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}.toolbar input,.toolbar select{background:#091a2c;border:1px solid var(--line);border-radius:8px;color:var(--text);padding:9px 10px}.toolbar input{min-width:190px}.alertrow{border-left:3px solid var(--red);padding:12px;background:#351c29;border-radius:8px;margin-bottom:9px}.alertrow small{color:#c6a5b1}.alertrow b{display:block;margin:4px 0}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field input,.field select{width:100%;padding:10px;border-radius:8px;background:#08192b;color:var(--text);border:1px solid var(--line)}.hint{color:var(--muted);font-size:12px;line-height:1.7}.footer-note{margin-top:18px;color:#718ca8;font-size:11px;line-height:1.7}.empty{text-align:center;padding:30px;color:var(--muted)}
 @media(max-width:1050px){.station-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.robot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}}
@@ -197,35 +232,51 @@ async function persistAlarm(alarm) {
   return await apiRequest("/api/alarms", {method:"POST",body:JSON.stringify(alarm)});
 }
 const stations=[
- // 一区：3个工位，22台机器人
- {id:"103ST",area:"一区",count:2,enabled:false,desc:"现场通信待接入"},
- {id:"104ST",area:"一区",count:10,enabled:false,desc:"现场通信待接入"},
- {id:"105ST",area:"一区",count:10,enabled:false,desc:"现场通信待接入"},
- // 二区：12个工位，12台机器人
- {id:"202ST",area:"二区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"203ST",area:"二区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"205ST",area:"二区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"208ST",area:"二区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"209ST",area:"二区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"210ST",area:"二区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"222ST",area:"二区",count:1,enabled:false,desc:"R1 · 27条焊缝基准配方"},
- {id:"223ST",area:"二区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"225ST",area:"二区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"228ST",area:"二区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"229ST",area:"二区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"230ST",area:"二区",count:1,enabled:false,desc:"现场通信待接入"},
- // 三区：7个工位，7台机器人
- {id:"301ST",area:"三区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"302ST",area:"三区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"303ST",area:"三区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"305ST",area:"三区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"306ST",area:"三区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"307ST",area:"三区",count:1,enabled:false,desc:"现场通信待接入"},
- {id:"310ST",area:"三区",count:1,enabled:false,desc:"现场通信待接入"}
+ // 一区：按参考平面图保留6个工位；其中3个配置焊接机器人，共22台。
+ {id:"103ST",area:"一区",count:2,enabled:false,desc:"2台焊接机器人 · 现场通信待接入",layout:{x:45.8,y:18.0,w:7.3,h:8.6}},
+ {id:"104ST",area:"一区",count:10,enabled:false,desc:"10台焊接机器人 · 现场通信待接入",layout:{x:59.5,y:18.0,w:7.3,h:8.6}},
+ {id:"105ST",area:"一区",count:10,enabled:false,desc:"10台焊接机器人 · 现场通信待接入",layout:{x:73.2,y:18.0,w:7.3,h:8.6}},
+ {id:"106ST",area:"一区",count:0,enabled:false,desc:"保留工位 · 无焊接机器人",layout:{x:86.3,y:18.0,w:7.3,h:8.6}},
+ {id:"101ST",area:"一区",count:0,enabled:false,desc:"保留工位 · 无焊接机器人",layout:{x:40.2,y:33.0,w:7.3,h:8.6}},
+ {id:"102ST",area:"一区",count:0,enabled:false,desc:"保留工位 · 无焊接机器人",layout:{x:48.3,y:33.0,w:7.3,h:8.6}},
+ // 二区：按参考平面图保留15个工位；其中12个配置焊接机器人，共12台。
+ {id:"224ST",area:"二区",count:0,enabled:false,desc:"保留工位 · 无焊接机器人",layout:{x:3.4,y:10.5,w:7.3,h:8.8}},
+ {id:"204ST",area:"二区",count:0,enabled:false,desc:"保留工位 · 无焊接机器人",layout:{x:17.1,y:10.5,w:7.3,h:8.8}},
+ {id:"225ST",area:"二区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:3.4,y:22.8,w:7.3,h:8.8}},
+ {id:"205ST",area:"二区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:17.1,y:22.8,w:7.3,h:8.8}},
+ {id:"299ST",area:"二区",count:0,enabled:false,desc:"保留工位 · 无焊接机器人",layout:{x:28.0,y:26.5,w:7.3,h:8.8}},
+ {id:"228ST",area:"二区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:3.4,y:34.0,w:7.3,h:8.8}},
+ {id:"208ST",area:"二区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:17.1,y:34.0,w:7.3,h:8.8}},
+ {id:"229ST",area:"二区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:3.4,y:45.5,w:7.3,h:8.8}},
+ {id:"209ST",area:"二区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:17.1,y:45.5,w:7.3,h:8.8}},
+ {id:"230ST",area:"二区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:3.4,y:57.0,w:7.3,h:8.8}},
+ {id:"210ST",area:"二区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:17.1,y:57.0,w:7.3,h:8.8}},
+ {id:"223ST",area:"二区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:3.4,y:68.2,w:7.3,h:8.8}},
+ {id:"203ST",area:"二区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:17.1,y:68.2,w:7.3,h:8.8}},
+ {id:"222ST",area:"二区",count:1,enabled:false,desc:"R1 · 27条焊缝基准配方",layout:{x:3.4,y:79.4,w:7.3,h:8.8}},
+ {id:"202ST",area:"二区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:17.1,y:79.4,w:7.3,h:8.8}},
+ // 三区：按参考平面图保留7个机器人工位及5个辅助/非机器人节点，共12处。
+ {id:"310ST",area:"三区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:34.8,y:10.5,w:7.3,h:8.8}},
+ {id:"309ST",area:"三区",count:0,enabled:false,desc:"保留工位 · 无焊接机器人",layout:{x:40.2,y:49.5,w:7.3,h:8.8}},
+ {id:"307ST",area:"三区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:40.2,y:61.0,w:7.3,h:8.8}},
+ {id:"303ST",area:"三区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:54.0,y:61.0,w:7.3,h:8.8}},
+ {id:"306ST",area:"三区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:40.2,y:72.5,w:7.3,h:8.8}},
+ {id:"302ST",area:"三区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:54.0,y:72.5,w:7.3,h:8.8}},
+ {id:"305ST",area:"三区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:40.2,y:84.0,w:7.3,h:8.8}},
+ {id:"301ST",area:"三区",count:1,enabled:false,desc:"1台焊接机器人 · 现场通信待接入",layout:{x:54.0,y:84.0,w:7.3,h:8.8}},
+ {id:"NUT2ST",area:"三区",count:0,enabled:false,desc:"螺母自动焊接站 · 未列入41台焊接机器人配置",kind:"辅助工位",layout:{x:74.2,y:69.0,w:9.2,h:8.8}},
+ {id:"NUT1ST",area:"三区",count:0,enabled:false,desc:"螺母自动焊接站 · 未列入41台焊接机器人配置",kind:"辅助工位",layout:{x:87.0,y:69.0,w:9.2,h:8.8}},
+ {id:"取出",area:"三区",count:0,enabled:false,desc:"工序辅助点 · 无焊接机器人",kind:"辅助工位",layout:{x:74.2,y:81.0,w:9.2,h:8.8}},
+ {id:"投入",area:"三区",count:0,enabled:false,desc:"工序辅助点 · 无焊接机器人",kind:"辅助工位",layout:{x:87.0,y:81.0,w:9.2,h:8.8}}
 ];
 const areaOrder=["一区","二区","三区"];
-const areaGroups=areaOrder.map(area=>({area,stations:stations.filter(s=>s.area===area),robotCount:stations.filter(s=>s.area===area).reduce((sum,s)=>sum+s.count,0)}));
-const totalRobotCount=stations.reduce((sum,s)=>sum+s.count,0);
+const areaGroups=areaOrder.map(area=>{
+ const groupStations=stations.filter(s=>s.area===area);
+ return {area,stations:groupStations,robotCount:groupStations.reduce((sum,s)=>sum+(s.count||0),0),robotStationCount:groupStations.filter(s=>s.count>0).length,noRobotCount:groupStations.filter(s=>s.count===0).length};
+});
+const totalRobotCount=stations.reduce((sum,s)=>sum+(s.count||0),0);
+const robotStationCount=stations.filter(s=>s.count>0).length;
+const noRobotStationCount=stations.filter(s=>s.count===0).length;
 async function nav(page){
   activePage=page;
   document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
@@ -236,18 +287,35 @@ document.querySelectorAll(".navbtn").forEach(b=>b.addEventListener("click",()=>n
 function head(title,sub,actions=""){return `<div class="pagehead"><div><h2>${title}</h2><div class="sub">${sub}</div></div><div class="actions">${actions}</div></div>`}
 function kpi(label,value,note,cls=""){return `<div class="kpi"><div class="label">${label}</div><div class="value ${cls}">${value}</div><div class="note">${note}</div></div>`}
 function stationCards(){
- return areaGroups.map(group=>`<section class="zone-section"><div class="zone-heading"><div><h3>${group.area}</h3><span>${group.stations.length}个工位 · ${group.robotCount}台机器人</span></div></div><div class="station-grid">${group.stations.map(s=>`<div class="station-card disabled" onclick="openStation('${s.id}')"><span class="bigstatus status-off">● 未接入</span><h3>${s.id}</h3><p>机器人数量：${s.count} 台</p><p>${s.desc}</p></div>`).join("")}</div></section>`).join("");
+ return areaGroups.map(group=>`<section class="zone-section"><div class="zone-heading"><div><h3>${group.area}</h3><span>${group.stations.length}处布局工位/辅助点 · ${group.robotStationCount}个有焊接机器人 · ${group.robotCount}台机器人</span></div><span class="zone-total">${group.robotCount} 台</span></div><div class="station-grid">${group.stations.map(s=>`<div class="station-card ${s.count>0?'has-robots':'no-robots'}" onclick="openStation('${s.id}')"><span class="bigstatus ${s.count>0?'status-ok':'status-off'}">${s.count>0?(s.enabled?'● 已接入':'● 通信未接入'):'● 无机器人'}</span><h3>${s.id}</h3><p>${s.count>0?`焊接机器人：${s.count} 台`:(s.kind||'普通工位')+' · 无焊接机器人'}</p><p>${s.desc}</p><span class="config-tag">${s.count>0?'已配置焊接机器人':'保留布局节点'}</span></div>`).join("")}</div></section>`).join("");
 }
 function mapNodes(){
- return `<div class="zone-map-note">按生产区域分组的工位示意图 · 工位数量准确，位置为分区展示，尚非现场测绘坐标</div><div class="zone-map">${areaGroups.map(group=>`<section class="zone-panel"><div class="zone-heading"><div><h3>${group.area}</h3><span>${group.stations.length}个工位 · ${group.robotCount}台机器人</span></div><span class="zone-total">${group.robotCount} 台</span></div><div class="zone-nodes">${group.stations.map(s=>`<button class="mapnode disabled" onclick="openStation('${s.id}')"><strong>${s.id}</strong><small>${s.count}台机器人 · 未接入</small></button>`).join("")}</div></section>`).join("")}</div>`;
+ const nodes=stations.map(s=>`<button class="floor-node ${s.count>0?'has-robots':'no-robots'} ${s.kind==='辅助工位'?'aux-node':''} ${s.id.startsWith('NUT')?'nut-node':''} ${['投入','取出'].includes(s.id)?'process-node':''}" style="left:${s.layout.x}%;top:${s.layout.y}%;width:${s.layout.w}%;height:${s.layout.h}%" onclick="openStation('${s.id}')" title="${s.id} · ${s.count>0?`有焊接机器人 ${s.count} 台`:'无焊接机器人'}"><strong>${s.id}</strong><small>${s.count>0?`${s.count}台焊接机器人`:'无焊接机器人'}</small></button>`).join("");
+ return `<div class="zone-map-note">按你提供的旧平面图还原三区相对位置；绿色表示配置有焊接机器人，灰色表示无焊接机器人。点击任一工位可查看详情。位置为参考图示意，尚非现场测绘坐标。</div><div class="floorplan-scroll"><div class="floorplan" role="group" aria-label="一区、二区、三区工位分布示意图">
+ <svg class="floorplan-outline" viewBox="0 0 1000 900" preserveAspectRatio="none" aria-hidden="true"><path d="M35 92 H240 V220 H350 V280 H240 V790 H35 Z"/><path d="M402 70 H843 V370 H350 V280 H402 Z"/><path d="M350 420 H853 V807 H350 Z"/><path d="M307 82 H390 V173 H307 Z"/></svg>
+ <div class="zone-tag zone-tag-two">二区</div><div class="zone-tag zone-tag-one">一区</div><div class="zone-tag zone-tag-three-small">三区</div><div class="zone-tag zone-tag-three">三区</div>
+ ${nodes}
+ <div class="sensor-label" style="left:56.4%;top:12.3%">MH13</div><div class="sensor-bar" style="left:56.4%;top:15.0%"></div>
+ <div class="sensor-label" style="left:70.0%;top:12.3%">MH14</div><div class="sensor-bar" style="left:70.0%;top:15.0%"></div>
+ <div class="sensor-label" style="left:83.7%;top:12.3%">MH15</div><div class="sensor-bar" style="left:83.7%;top:15.0%"></div>
+ <div class="mh-marker" style="left:10.2%;top:37.5%"><span class="mh-icon">🤖</span><span>MH1</span></div>
+ <div class="position-table" title="中间置台">⊕</div>
+ <div class="mh-marker" style="left:10.2%;top:58.5%"><span class="mh-icon">🤖</span><span>MH2</span></div>
+ </div></div><div class="floorplan-legend"><span><i class="legend-box robot"></i>有焊接机器人（绿色）</span><span><i class="legend-box no-robot"></i>无焊接机器人（灰色）</span><span><i class="legend-box communication"></i>现场通信尚未接入</span><span>🤖 MH1 / MH2：辅助机器人图标，单独保留，不计入41台焊接机器人统计</span><span>MH13 / MH14 / MH15：原图标记</span></div>`;
 }
-function overview(){return `${head("车间总览","三区工位与机器人数量已按现场清单更新",`<button class="${layoutMode==='map'?'primary':''}" onclick="setLayout('map')">分区平面图</button><button class="${layoutMode==='cards'?'primary':''}" onclick="setLayout('cards')">设备卡片</button>`)}<div class="kpis">${kpi("机器人总数",String(totalRobotCount),"现场配置：41台")}${kpi("工位总数",String(stations.length),"一区3 · 二区12 · 三区7")}${kpi("在线机器人","0","现场通信尚未接入","yellow")}${kpi("当前焊接状态","待采集","等待现场数据","blue")}</div><div class="panel"><div class="panelhead"><h3>${layoutMode==='map'?'三区工位分布':'三区工位设备卡片'}</h3><span class="pill">灰色：尚未接入现场通信</span></div>${layoutMode==='map'?mapNodes():stationCards()}</div><div class="footer-note">说明：工位编号和机器人数量来自现场清单；当前分区仅表达区域归属，不代表精确物理坐标。所有工位可点击查看配置，现场通信接入后再更新在线状态。</div>`}
+function overview(){return `${head("车间总览","完整保留参考图中的工位与辅助点，并区分焊接机器人配置",`<button class="${layoutMode==='map'?'primary':''}" onclick="setLayout('map')">分区平面图</button><button class="${layoutMode==='cards'?'primary':''}" onclick="setLayout('cards')">设备卡片</button>`)}<div class="kpis">${kpi("焊接机器人总数",String(totalRobotCount),"现场配置：41台")}${kpi("布局工位/辅助点",String(stations.length),`其中${robotStationCount}个有焊接机器人`)}${kpi("有焊接机器人工位",String(robotStationCount),`无焊接机器人：${noRobotStationCount}处`)}${kpi("在线机器人","0","现场通信尚未接入","yellow")}</div><div class="panel"><div class="panelhead"><h3>${layoutMode==='map'?'三区工位分布':'三区工位设备卡片'}</h3><span class="pill">绿色：有焊接机器人 · 灰色：无焊接机器人</span></div>${layoutMode==='map'?mapNodes():stationCards()}</div><div class="footer-note">说明：共保留${stations.length}处布局工位/辅助点，其中${robotStationCount}个工位配置焊接机器人，共${totalRobotCount}台；其余${noRobotStationCount}处不计入机器人总数。工位相对位置依据你提供的参考图片整理，尚非现场测绘坐标。现场通信状态独立显示，当前版本中所有机器人均设置为未接入，接入现场后再更新状态。</div>`}
 function setLayout(mode){layoutMode=mode;render()}
 function openStation(id){activeStation=id;activePage="stations";document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page==="stations"));render()}
 function openRobot(id){activeRobot=id;activePage="robots";document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page==="robots"));render()}
-function robotsForStation(id){const s=stations.find(x=>x.id===id);return Array.from({length:s?.count||1},(_,i)=>"R"+(i+1))}
-function stationsPage(){let s=stations.find(x=>x.id===activeStation)||stations[0];return `${head("工位监控",`当前工位：${s.id} · ${s.desc}`,`<button onclick="nav('overview')">返回车间总览</button>`)}<div class="kpis">${kpi("工位编号",s.id,"当前选择")}${kpi("机器人数量",s.count+" 台","按工位配置")}${kpi("控制柜配置",s.count===10?"10台机器人":s.count===2?"2台机器人":"1台机器人","实际通信映射待现场核实")}${kpi("接入状态",s.enabled?"演示接入":"尚未接入",s.enabled?"非现场实时数据":"等待配置",s.enabled?"green":"yellow")}</div><div class="panel"><div class="panelhead"><h3>机器人列表</h3><span class="pill">选择机器人查看详情</span></div><div class="robot-grid">${robotsForStation(s.id).map((r,i)=>`<div class="robot-card" onclick="openRobot('${r}')"><span class="pill ${s.alarm&&i===0?'status-bad':'status-ok'}">${s.alarm&&i===0?'模拟参数异常':s.enabled?'演示在线':'未接入'}</span><h3 style="margin-top:10px">${s.id} · ${r}</h3><div class="robot-metrics"><div class="metric"><small>当前焊缝</small><b>${s.id==="222ST"?"04 / 27":s.enabled?"12 / 27":"—"}</b></div><div class="metric"><small>配方状态</small><b class="${s.alarm&&i===0?'red':'green'}">${s.alarm&&i===0?'异常':s.enabled?'正常':'未知'}</b></div></div><div class="sub">点击查看机器人监控</div></div>`).join("")}</div></div>`}
-function robotPage(){let s=stations.find(x=>x.id===activeStation)||stations[3];return `${head("机器人监控",`${activeStation} · ${activeRobot} · 当前为演示数据`,`<button onclick="nav('stations')">返回工位</button><button onclick="nav('recipes')">查看焊缝配方</button>`)}<div class="kpis">${kpi("机器人状态","演示在线","尚未连接现场设备","green")}${kpi("当前焊缝","04 / 27","模拟焊接进度","blue")}${kpi("设定电压","25.0 V","R1标准第04条")}${kpi("设定电流","200 A","R1标准第04条")}</div><div class="grid2"><div class="panel"><h3>焊接参数趋势（模拟）</h3><canvas id="trend" class="chart"></canvas><div class="legend"><span><i class="swatch" style="background:#51a8ff"></i>电压</span><span><i class="swatch" style="background:#28d17c"></i>电流（归一化展示）</span></div></div><div class="panel"><h3>当前状态</h3><div class="alertrow" style="border-color:var(--yellow);background:#302a1c"><small>演示状态</small><b>当前数据尚未连接现场机器人</b><small>真实数据接入后，此处显示实际通信状态、设定参数和焊缝编号。</small></div><p class="hint">设定参数与实际焊接反馈是不同的数据。后续需要确认控制器接口能否读取每条焊缝的设定值，才能实现真正的配方变更检测。</p></div></div>`}
+function robotsForStation(id){const s=stations.find(x=>x.id===id);return Array.from({length:Math.max(0,s?.count||0)},(_,i)=>"R"+(i+1))}
+function stationsPage(){
+ let s=stations.find(x=>x.id===activeStation)||stations.find(x=>x.id==="222ST")||stations[0];
+ const hasRobots=s.count>0;
+ const configText=hasRobots?`${s.count}台焊接机器人`:(s.kind||"普通工位")+" · 无焊接机器人";
+ const robotContent=hasRobots?`<div class="panel"><div class="panelhead"><h3>机器人列表</h3><span class="pill">共${s.count}台 · 现场通信尚未接入</span></div><div class="robot-grid">${robotsForStation(s.id).map((r,i)=>`<div class="robot-card" onclick="openRobot('${r}')"><span class="pill ${s.alarm&&i===0?'status-bad':'status-off'}">${s.alarm&&i===0?'模拟参数异常':'现场未接入'}</span><h3 style="margin-top:10px">${s.id} · ${r}</h3><div class="robot-metrics"><div class="metric"><small>当前焊缝</small><b>${s.id==="222ST"?"04 / 27":"—"}</b></div><div class="metric"><small>配方状态</small><b class="yellow">待采集</b></div></div><div class="sub">现场通信接入后显示真实机器人数据</div></div>`).join("")}</div></div>`:`<div class="panel"><div class="panelhead"><h3>工位配置</h3><span class="pill">保留在车间平面图中</span></div><div class="empty"><div style="font-size:30px;margin-bottom:10px">▦</div><b>${s.id} 当前未配置焊接机器人</b><p class="hint">该位置依据车间参考图保留，用于展示完整生产区域布局；不会生成虚拟机器人，也不会计入41台焊接机器人总数。</p></div></div>`;
+ return `${head("工位监控",`${s.area} · ${s.id} · ${configText}`,`<button onclick="nav('overview')">返回车间总览</button>`)}<div class="kpis">${kpi("工位编号",s.id,"当前选择")}${kpi("焊接机器人数量",String(s.count||0)+" 台",hasRobots?"现场配置数量":"无焊接机器人")}${kpi("工位类型",s.kind||"普通工位",s.area)}${kpi("现场通信状态",hasRobots?"未接入":"不适用",hasRobots?"等待现场接线与采集":"该工位未配置焊接机器人",hasRobots?"yellow":"blue")}</div>${robotContent}`;
+}
+function robotPage(){let s=stations.find(x=>x.id===activeStation&&x.count>0)||stations.find(x=>x.id==="222ST");return `${head("机器人监控",`${activeStation} · ${activeRobot} · 当前为演示数据`,`<button onclick="nav('stations')">返回工位</button><button onclick="nav('recipes')">查看焊缝配方</button>`)}<div class="kpis">${kpi("机器人状态","演示在线","尚未连接现场设备","green")}${kpi("当前焊缝","04 / 27","模拟焊接进度","blue")}${kpi("设定电压","25.0 V","R1标准第04条")}${kpi("设定电流","200 A","R1标准第04条")}</div><div class="grid2"><div class="panel"><h3>焊接参数趋势（模拟）</h3><canvas id="trend" class="chart"></canvas><div class="legend"><span><i class="swatch" style="background:#51a8ff"></i>电压</span><span><i class="swatch" style="background:#28d17c"></i>电流（归一化展示）</span></div></div><div class="panel"><h3>当前状态</h3><div class="alertrow" style="border-color:var(--yellow);background:#302a1c"><small>演示状态</small><b>当前数据尚未连接现场机器人</b><small>真实数据接入后，此处显示实际通信状态、设定参数和焊缝编号。</small></div><p class="hint">设定参数与实际焊接反馈是不同的数据。后续需要确认控制器接口能否读取每条焊缝的设定值，才能实现真正的配方变更检测。</p></div></div>`}
 function recipesPage(){return `${head("焊缝配方监控","222ST · R1 · 27条标准配方（只读）",`<button onclick="exportRecipe()">导出配方 CSV</button>`)}<div class="kpis">${kpi("标准焊缝","27 条","数据库基准参数","green")}${kpi("已检测","0 条","真实机器人尚未接入","yellow")}${kpi("模拟异常",recipe.filter(x=>x.status==="模拟异常").length+" 条","仅用于验证界面","red")}${kpi("基准来源","Supabase","网页只读取，不修改标准值","blue")}</div><div class="panel"><div class="toolbar"><input id="recipeSearch" placeholder="搜索焊缝编号，例如 16" oninput="filterRecipe()"><select id="recipeStatus" onchange="filterRecipe()"><option value="all">全部状态</option><option value="未检测">未检测</option><option value="正常">正常</option><option value="模拟异常">模拟异常</option></select><button onclick="simulateChange()">模拟一条参数修改</button><button onclick="resetSimulation()">重置模拟状态（保留报警记录）</button></div><div class="tablewrap"><table id="recipeTable"><thead><tr><th>焊缝</th><th>标准电压 (V)</th><th>标准电流 (A)</th><th>当前设定电压 (V)</th><th>当前设定电流 (A)</th><th>状态</th><th>操作</th></tr></thead><tbody>${recipeRows()}</tbody></table></div><div class="footer-note">说明：标准电压、电流从 Supabase 读取，网页端不提供修改入口。当前设定值暂未接入真实机器人；“模拟参数修改”只测试网页逻辑，不会写入机器人控制器。</div><div id="recipeSyncStatus" class="footer-note">正在连接数据库，准备启动自动同步…</div></div>`}
 function recipeRows(){return recipe.map(r=>`<tr data-seam="${r.seam}" data-status="${r.status}"><td class="num">${String(r.seam).padStart(2,"0")}</td><td class="num">${r.voltage}</td><td class="num">${r.current}</td><td class="num">${r.currentVoltage===null?"—":r.currentVoltage.toFixed(1)}</td><td class="num">${r.currentCurrent===null?"—":r.currentCurrent.toFixed(1)}</td><td class="${r.status==='模拟异常'?'red':r.status==='正常'?'green':'yellow'}">${r.status}</td><td><button onclick="testSeam(${r.seam})">测试比对</button></td></tr>`).join("")}
 function filterRecipe(){let q=(document.getElementById("recipeSearch")?.value||"").trim();let st=document.getElementById("recipeStatus")?.value||"all";document.querySelectorAll("#recipeTable tbody tr").forEach(tr=>{tr.style.display=(!q||tr.dataset.seam.includes(q.padStart(2,"0"))||tr.dataset.seam===q)&& (st==="all"||tr.dataset.status===st)?"":"none"})}
@@ -277,7 +345,7 @@ function alarmsPage(){
 }
 function exportAlarms(){let rows=[["时间","工位","机器人","焊缝","异常项目","标准值","当前值","偏差","记录类型"],...alarms.map(a=>[a.time,a.station,a.robot,a.seam,a.field,a.standard,a.current,a.delta,a.state])];let a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+rows.map(r=>r.join(",")).join("\r\n")],{type:"text/csv;charset=utf-8"}));a.download="焊接报警记录.csv";a.click()}
 function historyPage(){return `${head("历史记录","按工位和机器人查看历史焊接数据") }<div class="panel"><div class="toolbar"><select>${stations.map(s=>`<option>${s.id}</option>`).join("")}</select><select><option>R1</option><option>R2</option><option>R3</option></select><input type="date" value="2026-10-24"><button class="primary" onclick="alert('历史记录查询将在接入数据库后启用。')">查询</button></div><div class="empty">当前没有真实历史数据。接入现场采集程序和数据库后，这里将显示工件、焊缝、设定参数、实际参数及焊接时间。</div></div>`}
-function settingsPage(){return `${head("系统管理","工位配置、机器人配置与配方管理") }<div class="grid2"><div class="panel"><h3>工位与控制柜配置</h3><div class="tablewrap"><table><thead><tr><th>工位</th><th>机器人数量</th><th>接入配置</th><th>状态</th></tr></thead><tbody>${stations.map(s=>`<tr><td>${s.id}</td><td>${s.count}</td><td>${s.count===10?"10台机器人（控制柜配置待确认）":s.count===2?"2台机器人（控制柜配置待确认）":"1台机器人（控制柜配置待确认）"}</td><td class="${s.enabled?'green':'yellow'}">${"现场通信待接入"}</td></tr>`).join("")}</tbody></table></div></div><div class="panel"><h3>平台设置</h3><div class="formgrid"><div class="field"><label>平台名称</label><input value="安川机器人焊接数字化监控平台"></div><div class="field"><label>采集周期（秒）</label><input type="number" value="0.5" min="0.2" step="0.1"></div><div class="field"><label>电压容差（V）</label><input type="number" value="0.1" step="0.1"></div><div class="field"><label>电流容差（A）</label><input type="number" value="1" step="1"></div></div><p class="hint">当前为界面原型，设置暂不保存到服务器。正式版将加入登录、角色权限、审核流程和数据库持久化。</p><button class="primary" onclick="alert('设置保存功能将在后端开发阶段启用。')">保存设置（演示）</button></div></div>`}
+function settingsPage(){return `${head("系统管理","工位配置、机器人配置与配方管理") }<div class="grid2"><div class="panel"><h3>工位与控制柜配置</h3><div class="tablewrap"><table><thead><tr><th>区域</th><th>工位</th><th>焊接机器人数量</th><th>配置说明</th><th>状态</th></tr></thead><tbody>${stations.map(s=>`<tr><td>${s.area}</td><td>${s.id}</td><td>${s.count||0}</td><td>${s.count>0?`${s.count}台机器人（控制柜映射待确认）`:"无焊接机器人（保留布局）"}</td><td class="${s.count>0?'yellow':'status-off'}">${s.count>0?"现场通信待接入":"不适用"}</td></tr>`).join("")}</tbody></table></div></div><div class="panel"><h3>平台设置</h3><div class="formgrid"><div class="field"><label>平台名称</label><input value="安川机器人焊接数字化监控平台"></div><div class="field"><label>采集周期（秒）</label><input type="number" value="0.5" min="0.2" step="0.1"></div><div class="field"><label>电压容差（V）</label><input type="number" value="0.1" step="0.1"></div><div class="field"><label>电流容差（A）</label><input type="number" value="1" step="1"></div></div><p class="hint">当前为界面原型，设置暂不保存到服务器。正式版将加入登录、角色权限、审核流程和数据库持久化。</p><button class="primary" onclick="alert('设置保存功能将在后端开发阶段启用。')">保存设置（演示）</button></div></div>`}
 function render(){
  let m=document.getElementById("main");
  if(activePage==="overview")m.innerHTML=overview();else if(activePage==="stations")m.innerHTML=stationsPage();else if(activePage==="robots"){m.innerHTML=robotPage();drawChart()}else if(activePage==="recipes")m.innerHTML=recipesPage();else if(activePage==="alarms")m.innerHTML=alarmsPage();else if(activePage==="history")m.innerHTML=historyPage();else m.innerHTML=settingsPage();
